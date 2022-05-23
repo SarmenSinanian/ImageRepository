@@ -132,10 +132,6 @@ def delete_pic(image_id):
     return render_template("delete_pic.html", message="Image deletion successful!"), 200
 
 
-# @app.route("/image/:id", methods=['GET'])
-# def image():
-
-
 @app.route("/reset")
 def reset():
     (sqliteConnection, cursor) = get_cursor()
