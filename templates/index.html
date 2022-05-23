@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Image Repository</title>
+        <style>
+          img {
+            width: 25%;
+            height: 25%;
+          }
+        </style>
+    </head>
+    <body>
+        <a href="/"><button>Main page</button></a><br>
+        <a href="/reset"><button>Clear/Reset Database (Delete All Images)</button></a><br>
+        <form action="/add_photo/" method="POST" enctype="multipart/form-data">
+            <label for="files">Select Files To Add:</label>
+                <input type="file" id="files" name="files" accept=".jpg, .jpeg, .png" multiple><br><br>
+            <input type="submit">
+        </form>
+        <br>
+        <table border = 50>
+            <thead>
+                <td>ImageID</td>
+                <td>Image</td>
+            </thead>
+            {% for image in images %}
+                <tr>
+                <td>{{image["id"]}}</td>
+                <td><img src="data:;base64,{{ image['image'] }}"/></td>
+                <td><a href="/delete_pic/{{ image['id'] }}"><button>Delete</button></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
