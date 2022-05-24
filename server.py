@@ -72,9 +72,13 @@ def add_photo():
     if not pics:
         return render_template("add_photo.html", message="No pic uploaded! Press the 'Main Page' button (or your browser's"
                                    " 'Back' button) and refresh the page."), 400
-    filename = secure_filename(pics.filename)
+    filenameList = []
+    for i in pic_list:
+        filename = secure_filename(i.filename)
+        filenameList.append(filename)
     mimetype = pics.mimetype
-    if not filename or not mimetype:
+    file = secure_filename(pics.filename)
+    if not file or not mimetype:
         return render_template("add_photo.html", message="Bad upload! Press the 'Main Page' button (or your browser's"
                                    " 'Back' button) and refresh the page."), 400
     (sqliteConnection, cursor) = get_cursor()
@@ -87,7 +91,7 @@ def add_photo():
         photoData = base64.b64encode(photoBytes)
         if finalEntryID is None:
             finalEntryID = [0]
-        data_tuple = (count + finalEntryID[0], filename, photoData)
+        data_tuple = (count + finalEntryID[0], filenameList[count-1], photoData)
         sqlite_addPhoto_query = """ INSERT INTO photos
                                           (id, filename, photo) VALUES ( ?, ?, ?)"""
         cursor.execute(sqlite_addPhoto_query, data_tuple)
