@@ -22,11 +22,13 @@
         <table border = 50>
             <thead>
                 <td>ImageID</td>
+                <td>Filename</td>
                 <td>Image</td>
             </thead>
             {% for image in images %}
                 <tr>
-                <td>{{image["id"]}}</td>
+                <td>{{ image["id"] }}</td>
+                <td>{{ image["filename"] }}</td>
                 <td><img src="data:;base64,{{ image['image'] }}"/></td>
                 <td><a href="/delete_pic/{{ image['id'] }}"><button>Delete</button></a></td>
                 </tr>
