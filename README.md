@@ -5,4 +5,4 @@ HTML displayed database of images in which you can: add multipe photos at one ti
 
 Fields returned per image uploaded: ImageID, Filename, Image (Displayed).
 
-Live Version: https://shopifyimagerepository.herokuapp.com/
+Live Version: https://sarmensimagerepository.herokuapp.com/
